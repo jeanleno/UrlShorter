@@ -4,6 +4,7 @@ import com.jlheidemann.urlshorter.business.UrlShorter;
 import com.jlheidemann.urlshorter.business.exception.UrlExpiredException;
 import com.jlheidemann.urlshorter.business.exception.UrlNotFoundException;
 import com.jlheidemann.urlshorter.dto.ShortUrlDto;
+import com.jlheidemann.urlshorter.util.Constants;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,7 @@ public class ShortUrlController {
         UrlShorter shorter = new UrlShorter();
         String redirectUrl;
         RedirectView redirectView = new RedirectView();
-        redirectUrl = shorter.findRedirectUrl("http://localhost:8080/"+url);
+        redirectUrl = shorter.findRedirectUrl(Constants.DOMAIN + url);
 
         if (redirectUrl != null && !"".equals(redirectUrl)) {
             redirectView.setUrl(redirectUrl);

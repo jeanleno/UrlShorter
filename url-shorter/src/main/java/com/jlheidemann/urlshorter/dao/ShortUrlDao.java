@@ -21,11 +21,16 @@ public class ShortUrlDao {
     
     public ShortUrl findByShortUrl(String url) {
         AppDatabase db = AppDatabase.getInstance();
-        Optional<ShortUrl> opt = db.getUrls().stream().filter(u -> u.getNewUrl().equalsIgnoreCase(url)).findFirst();
+        Optional<ShortUrl> opt = db.getUrls().stream().filter(u -> u.getNewUrl().equals(url)).findFirst();
         
         if (opt.isPresent()) {
             return opt.get();
         }
         return null;
+    }
+    
+    public void delete(ShortUrl shortUrl) {
+        AppDatabase db = AppDatabase.getInstance();
+        db.getUrls().remove(shortUrl);
     }
 }
